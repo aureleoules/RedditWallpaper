@@ -20,7 +20,10 @@ const LENGTH = 100;
 const PATH = require('os').homedir() + "\\Pictures\\Wallpapers\\";
 
 /* Subreddits you want to fetch */
-const SUBREDDIT = "WQHD_Wallpaper";
+const SUBREDDITS = [
+    "iamverysmart",
+    "WQHD_Wallpaper"
+]
 
 const r = new snoowrap({
     userAgent: 'RedditWallpaper by @aureleoules',
@@ -30,7 +33,16 @@ const r = new snoowrap({
     password: process.env.REDDIT_PASS
 });
 
-r.getSubreddit(SUBREDDIT).getHot({limit: LENGTH}).then(submissions => {
+let subs = "";
+for(let i = 0; i < SUBREDDITS.length; i++) {
+    if(i !== SUBREDDITS.length -1) {
+        subs += SUBREDDITS[i] + "+";
+    } else {
+        subs += SUBREDDITS[i];
+    }
+}
+
+r.getSubreddit(subs).getHot({limit: LENGTH}).then(submissions => {
     let validUrl = false;
     while(validUrl === false) {
         const wallpaper = getRandomWallpaper(submissions);
