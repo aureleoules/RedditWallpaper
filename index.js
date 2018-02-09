@@ -21,7 +21,7 @@ const PATH = require('os').homedir() + "\\Pictures\\Wallpapers\\";
 
 /* Subreddits you want to fetch */
 const SUBREDDITS = [
-    "iamverysmart",
+    "EarthPorn",
     "WQHD_Wallpaper"
 ]
 
