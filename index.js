@@ -19,6 +19,9 @@ const LENGTH = 100;
 /* Where do you want to save the wallpapers? (By default ~/Pictures/Wallpapers) */
 const PATH = require('os').homedir() + "\\Pictures\\Wallpapers\\";
 
+/* Subreddits you want to fetch */
+const SUBREDDIT = "WQHD_Wallpaper";
+
 const r = new snoowrap({
     userAgent: 'RedditWallpaper by @aureleoules',
     clientId: process.env.CLIENT_ID,
@@ -27,7 +30,7 @@ const r = new snoowrap({
     password: process.env.REDDIT_PASS
 });
 
-r.getSubreddit('WQHD_Wallpaper').getHot({limit: LENGTH}).then(submissions => {
+r.getSubreddit(SUBREDDIT).getHot({limit: LENGTH}).then(submissions => {
     let validUrl = false;
     while(validUrl === false) {
         const wallpaper = getRandomWallpaper(submissions);
